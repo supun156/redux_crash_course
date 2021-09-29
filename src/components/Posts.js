@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/postActions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { fetchPosts } from "../actions/postActions";
+
+//TODO
+// 1. Convert file into function component
+// 2 To access data from redux use redux hooks
 
 class Posts extends Component {
   componentWillMount() {
@@ -15,7 +19,7 @@ class Posts extends Component {
   }
 
   render() {
-    const postItems = this.props.posts.map(post => (
+    const postItems = this.props.posts.map((post) => (
       <div key={post.id}>
         <h3>{post.title}</h3>
         <p>{post.body}</p>
@@ -36,7 +40,7 @@ Posts.propTypes = {
   newPost: PropTypes.object
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   posts: state.posts.items,
   newPost: state.posts.item
 });
