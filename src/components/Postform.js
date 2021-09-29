@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createPost } from "../actions/postActions";
+import { withRouter } from "react-router-dom";
 
 class PostForm extends Component {
   constructor(props) {
@@ -28,6 +29,8 @@ class PostForm extends Component {
     };
 
     this.props.createPost(post);
+
+    this.props.history.push("/");
   }
 
   render() {
@@ -67,4 +70,4 @@ PostForm.propTypes = {
   createPost: PropTypes.func.isRequired
 };
 
-export default connect(null, { createPost })(PostForm);
+export default withRouter(connect(null, { createPost })(PostForm));

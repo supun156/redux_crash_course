@@ -1,26 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import "./App.css";
 import { Provider } from "react-redux";
 
-import Posts from "./components/Posts";
-import PostForm from "./components/Postform";
-
 import store from "./store";
+import Routes from "./R";
+import { fetchPosts } from "./actions/postActions";
 
 const App = () => {
   // class App extends Component {
   // render() {
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <PostForm />
-        <hr />
-        {/* <Posts /> */}
-      </div>
-    </Provider>
+    <div className="App">
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    </div>
   );
   // }
 };

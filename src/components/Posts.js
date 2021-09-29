@@ -8,10 +8,6 @@ import { fetchPosts } from "../actions/postActions";
 // 2 To access data from redux use redux hooks
 
 class Posts extends Component {
-  componentWillMount() {
-    this.props.fetchPosts();
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.newPost) {
       this.props.posts.unshift(nextProps.newPost);
