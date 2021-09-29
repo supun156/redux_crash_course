@@ -56,7 +56,7 @@ class PostForm extends Component {
             />
           </div>
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit">Submit Post</button>
         </form>
       </div>
     );
