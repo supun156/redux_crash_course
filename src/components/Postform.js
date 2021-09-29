@@ -9,7 +9,8 @@ class PostForm extends Component {
     super(props);
     this.state = {
       title: "",
-      body: ""
+      body: "",
+      name: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -40,6 +41,16 @@ class PostForm extends Component {
       <div>
         <h1>Add Post</h1>
         <form onSubmit={this.onSubmit}>
+          <div>
+            <label>Name: </label>
+            <br />
+            <input
+              type="text"
+              name="name"
+              onChange={this.onChange}
+              value={this.state.name}
+            />
+          </div>
           <div>
             <label>Title: </label>
             <br />
