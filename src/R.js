@@ -32,7 +32,7 @@ const Routes = () => {
                 </header>
 
                 <hr />
-                {/* <Posts /> */}
+                <Posts />
               </div>
             );
           }}
