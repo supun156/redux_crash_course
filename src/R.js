@@ -4,7 +4,7 @@ import { Provider, useDispatch } from "react-redux";
 
 import store from "./store";
 import Posts from "./components/Posts";
-import PostForm from "./components/Postform";
+import PostForm from "./PostformComponent";
 import { fetchPosts } from "./actions/postActions";
 
 const Routes = () => {

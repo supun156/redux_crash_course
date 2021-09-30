@@ -1,10 +1,10 @@
 import React, { Component, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createPost } from "../actions/postActions";
+import { createPost } from "./actions/postActions";
 import { withRouter } from "react-router-dom";
 
-class PostForm extends Component {
+class PostformComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,8 +79,8 @@ class PostForm extends Component {
   }
 }
 
-PostForm.propTypes = {
+PostformComponent.propTypes = {
   createPost: PropTypes.func.isRequired
 };
 
-export default withRouter(connect(null, { createPost })(PostForm));
+export default withRouter(connect(null, { createPost })(PostformComponent));
