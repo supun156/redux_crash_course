@@ -1,44 +1,44 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../actions/postActions";
 
-//TODO
-// 1. Convert file into function component
-// 2 To access data from redux use redux hooks
+const Posts = () => {
+  const dispatch = useDispatch();
 
-class Posts extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.newPost) {
-      this.props.posts.unshift(nextProps.newPost);
+  const posts = useSelector((state) => state.posts.items);
+  const newPost = useSelector((state) => state.posts.item);
+
+  // useState to handle the local state for posts
+  const [localPosts, setLocalPosts] = useState(posts);
+
+  useEffect(() => {
+    fetchPosts(dispatch);
+
+    // Check for a new post and update the local state accordingly
+    if (newPost) {
+      setLocalPosts((prevPosts) => [newPost, ...prevPosts]);
     }
-  }
+  }, [newPost, dispatch]);
 
-  render() {
-    const postItems = this.props.posts.map((post) => (
-      <div key={post.id}>
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
-      </div>
-    ));
-    return (
-      <div>
-        <h1>Posts</h1>
-        {postItems}
-      </div>
-    );
-  }
-}
+  const postItems = localPosts.map((post) => (
+    <div key={post.id}>
+      <h3>{post.title}</h3>
+      <p>{post.body}</p>
+    </div>
+  ));
 
-Posts.propTypes = {
-  fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired,
-  newPost: PropTypes.object
+  return (
+    <div>
+      <h1>Posts</h1>
+      {postItems}
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => ({
-  posts: state.posts.items,
-  newPost: state.posts.item
-});
+Posts.propTypes = {
+  posts: PropTypes.array.isRequired,
+  newPost: PropTypes.object,
+};
 
-export default connect(mapStateToProps, { fetchPosts })(Posts);
+export default Posts;
